@@ -24,9 +24,23 @@
             </div>
         </div>
 
-        <div class="mt-8 pt-6 border-t border-zinc-800 flex flex-col sm:flex-row gap-4">
-            <a href="{{ url_for('verify') }}"
+        <div class="mt-8 pt-6 border-t border-zinc-800 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="{{ url_for('attendance') }}"
                 class="inline-flex items-center justify-center px-6 py-3 bg-emerald-500 text-zinc-950 font-semibold rounded-lg hover:bg-emerald-400 transition-all hover:scale-[1.02] active:scale-[0.98]">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                </svg>
+                Mark Attendance
+            </a>
+            <a href="{{ url_for('scores') }}"
+                class="inline-flex items-center justify-center px-6 py-3 bg-zinc-800 text-white font-semibold rounded-lg border border-zinc-600 hover:border-emerald-500/50 transition-all">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                </svg>
+                Scores
+            </a>
+            <a href="{{ url_for('verify') }}"
+                class="inline-flex items-center justify-center px-6 py-3 bg-zinc-800 text-white font-semibold rounded-lg border border-zinc-600 hover:border-emerald-500/50 transition-all">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>

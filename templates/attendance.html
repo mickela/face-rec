@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <div class="mb-8">
+        <h1 class="text-2xl font-bold text-white mb-1">Attendance</h1>
+        <p class="text-zinc-500 text-sm">Mark attendance by course code. Each login is also tracked.</p>
+    </div>
+
+    <div class="p-6 sm:p-8 rounded-xl border border-zinc-800/80 bg-zinc-900/30 mb-6">
+        <h2 class="font-semibold text-white mb-4">Mark attendance</h2>
+        <form method="post" class="flex gap-3">
+            <input type="text" name="course_code" placeholder="e.g. CSC101" required
+                class="flex-1 px-4 py-3 rounded-lg bg-zinc-800/80 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50 uppercase"
+                maxlength="20">
+            <button type="submit"
+                class="px-6 py-3 bg-emerald-500 text-zinc-950 font-semibold rounded-lg hover:bg-emerald-400 transition-all">
+                Mark
+            </button>
+        </form>
+    </div>
+
+    <div class="p-6 sm:p-8 rounded-xl border border-zinc-800/80 bg-zinc-900/30 mb-6">
+        <h2 class="font-semibold text-white mb-2">Login count</h2>
+        <p class="text-3xl font-bold text-emerald-400">{{ login_count }}</p>
+        <p class="text-xs text-zinc-500 mt-1">Total logins recorded (each login counts as attendance)</p>
+    </div>
+
+    <div class="p-6 sm:p-8 rounded-xl border border-zinc-800/80 bg-zinc-900/30 mb-6">
+        <h2 class="font-semibold text-white mb-4">Today's attendance</h2>
+        {% if today_attendance %}
+        <ul class="space-y-2">
+            {% for a in today_attendance %}
+            <li class="flex items-center justify-between py-2 border-b border-zinc-800 last:border-0">
+                <span class="font-mono text-emerald-400">{{ a.course_code }}</span>
+                <span class="text-zinc-500 text-sm">{{ a.marked_at.strftime('%H:%M') }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="text-zinc-500 text-sm">No attendance marked today yet.</p>
+        {% endif %}
+    </div>
+
+    <div class="p-6 sm:p-8 rounded-xl border border-zinc-800/80 bg-zinc-900/30">
+        <h2 class="font-semibold text-white mb-4">Recent attendance</h2>
+        {% if all_attendance %}
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="text-left text-zinc-500 border-b border-zinc-700">
+                        <th class="pb-2 pr-4">Course</th>
+                        <th class="pb-2">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in all_attendance %}
+                    <tr class="border-b border-zinc-800/50">
+                        <td class="py-2 pr-4 font-mono text-emerald-400">{{ a.course_code }}</td>
+                        <td class="py-2 text-zinc-400">{{ a.marked_at.strftime('%b %d, %Y') }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="text-zinc-500 text-sm">No attendance history yet.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

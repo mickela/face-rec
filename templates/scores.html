@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <div class="mb-8">
+        <h1 class="text-2xl font-bold text-white mb-1">Scores</h1>
+        <p class="text-zinc-500 text-sm">Add and view CA and exam scores by course.</p>
+    </div>
+
+    <div class="p-6 sm:p-8 rounded-xl border border-zinc-800/80 bg-zinc-900/30 mb-6">
+        <h2 class="font-semibold text-white mb-4">Add score</h2>
+        <form method="post" class="space-y-4">
+            {% if (current_user.role or 'student') == 'lecturer' %}
+            <div>
+                <label for="student_email" class="block text-sm font-medium text-zinc-400 mb-2">Student email (leave blank for yourself)</label>
+                <input type="email" name="student_email" id="student_email" placeholder="student@example.com"
+                    class="w-full px-4 py-3 rounded-lg bg-zinc-800/80 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50">
+            </div>
+            {% endif %}
+            <div>
+                <label for="course_code" class="block text-sm font-medium text-zinc-400 mb-2">Course code</label>
+                <input type="text" name="course_code" id="course_code" required placeholder="e.g. CSC101"
+                    class="w-full px-4 py-3 rounded-lg bg-zinc-800/80 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50 uppercase"
+                    maxlength="20">
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="score_type" class="block text-sm font-medium text-zinc-400 mb-2">Type</label>
+                    <select name="score_type" id="score_type" required
+                        class="w-full px-4 py-3 rounded-lg bg-zinc-800/80 border border-zinc-700 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50">
+                        {% for st in score_types %}
+                        <option value="{{ st }}">{{ st }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="score" class="block text-sm font-medium text-zinc-400 mb-2">Score (0–100)</label>
+                    <input type="number" name="score" id="score" required min="0" max="100" step="0.01" placeholder="75"
+                        class="w-full px-4 py-3 rounded-lg bg-zinc-800/80 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50">
+                </div>
+            </div>
+            <button type="submit"
+                class="w-full py-3 px-4 bg-emerald-500 text-zinc-950 font-semibold rounded-lg hover:bg-emerald-400 transition-all">
+                Add Score
+            </button>
+        </form>
+    </div>
+
+    <div class="p-6 sm:p-8 rounded-xl border border-zinc-800/80 bg-zinc-900/30">
+        <h2 class="font-semibold text-white mb-4">My scores</h2>
+        {% if scores_by_course %}
+        {% for course_code, course_scores in scores_by_course.items() %}
+        <div class="mb-4 last:mb-0">
+            <h3 class="font-mono text-emerald-400 mb-2">{{ course_code }}</h3>
+            <div class="flex flex-wrap gap-2">
+                {% for s in course_scores %}
+                <span class="px-3 py-1 rounded-lg bg-zinc-800 text-zinc-300 text-sm">
+                    {{ s.score_type }}: <strong>{{ "%.1f"|format(s.score) }}</strong>
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p class="text-zinc-500 text-sm">No scores recorded yet.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
