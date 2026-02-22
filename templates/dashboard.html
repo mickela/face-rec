@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <div class="mb-8">
+        <h1 class="text-2xl font-bold text-white mb-1">Welcome, {{ user.full_name }}</h1>
+        <p class="text-zinc-500 text-sm">Your FaceRec dashboard</p>
+    </div>
+
+    <div class="p-6 sm:p-8 rounded-xl border border-zinc-800/80 bg-zinc-900/30">
+        <div class="flex flex-col sm:flex-row gap-6 sm:gap-8">
+            <div class="flex-shrink-0">
+                <img src="{{ url_for('uploaded_file', filename=user.profile_img) }}" alt="Profile"
+                    class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl object-cover border border-zinc-700 ring-2 ring-emerald-500/20">
+            </div>
+            <div class="flex-1 space-y-4">
+                <div>
+                    <p class="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-1">Email</p>
+                    <p class="text-zinc-200 font-mono text-sm">{{ user.email }}</p>
+                </div>
+                <div>
+                    <p class="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-1">Department</p>
+                    <p class="text-zinc-200">{{ user.department }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-zinc-800 flex flex-col sm:flex-row gap-4">
+            <a href="{{ url_for('verify') }}"
+                class="inline-flex items-center justify-center px-6 py-3 bg-emerald-500 text-zinc-950 font-semibold rounded-lg hover:bg-emerald-400 transition-all hover:scale-[1.02] active:scale-[0.98]">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Verify Identity
+            </a>
+            <a href="{{ url_for('logout') }}"
+                class="inline-flex items-center justify-center px-6 py-3 border border-zinc-600 text-zinc-400 font-medium rounded-lg hover:border-zinc-500 hover:text-white transition-all">
+                Logout
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

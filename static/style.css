@@ -1,0 +1,14 @@
+/* FaceRec - Custom overrides */
+input::file-selector-button {
+  cursor: pointer;
+}
+
+/* Smooth focus transitions */
+input:focus, button:focus {
+  outline: none;
+}
+
+/* Subtle selection color */
+::selection {
+  background-color: rgba(16, 185, 129, 0.3);
+}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <section class="text-center py-16 sm:py-24">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4">
+            Secure facial verification
+        </h1>
+        <p class="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-10">
+            Protect your account with advanced face recognition. Fast, reliable, and built for real people.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{{ url_for('signup') }}" class="inline-flex items-center justify-center px-8 py-4 bg-emerald-500 text-zinc-950 font-semibold rounded-lg hover:bg-emerald-400 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-emerald-500/20">
+                Get Started
+            </a>
+            <a href="{{ url_for('login') }}" class="inline-flex items-center justify-center px-8 py-4 border border-zinc-600 text-zinc-300 font-medium rounded-lg hover:border-zinc-500 hover:text-white hover:bg-zinc-800/50 transition-all">
+                Login
+            </a>
+        </div>
+    </section>
+
+    <section class="grid sm:grid-cols-3 gap-8 sm:gap-6 pt-16 border-t border-zinc-800/80">
+        <div class="group p-6 rounded-xl border border-zinc-800/80 bg-zinc-900/30 hover:border-emerald-500/30 hover:bg-zinc-900/50 transition-all">
+            <div class="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-4 group-hover:bg-emerald-500/20 transition-colors">
+                <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+            </div>
+            <h3 class="font-semibold text-white mb-2">Secure Authentication</h3>
+            <p class="text-sm text-zinc-500">Advanced facial recognition powered by DeepFace protects your account.</p>
+        </div>
+        <div class="group p-6 rounded-xl border border-zinc-800/80 bg-zinc-900/30 hover:border-emerald-500/30 hover:bg-zinc-900/50 transition-all">
+            <div class="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-4 group-hover:bg-emerald-500/20 transition-colors">
+                <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </div>
+            <h3 class="font-semibold text-white mb-2">User Friendly</h3>
+            <p class="text-sm text-zinc-500">Clean, modern interface designed for a smooth experience.</p>
+        </div>
+        <div class="group p-6 rounded-xl border border-zinc-800/80 bg-zinc-900/30 hover:border-emerald-500/30 hover:bg-zinc-900/50 transition-all">
+            <div class="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-4 group-hover:bg-emerald-500/20 transition-colors">
+                <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+            </div>
+            <h3 class="font-semibold text-white mb-2">Fast Verification</h3>
+            <p class="text-sm text-zinc-500">Quick, reliable face matching. No waiting around.</p>
+        </div>
+    </section>
+</div>
+{% endblock %}
